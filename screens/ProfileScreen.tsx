@@ -1,6 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import Header from '../components/Header';
+import colors from '../constants/colors';
 
-import { Text, View } from 'react-native';
 import { RootTabScreenProps } from '../types';
 
 export default function ProfileScreen({
@@ -8,6 +9,9 @@ export default function ProfileScreen({
 }: RootTabScreenProps<'Profile'>) {
   return (
     <View style={styles.container}>
+      {/* header */}
+      <Header />
+
       <Text style={styles.title}>ProfileScreen</Text>
       <View style={styles.separator} />
     </View>
@@ -17,8 +21,7 @@ export default function ProfileScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: colors.white,
   },
   title: {
     fontSize: 20,

@@ -9,7 +9,11 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function BoardStackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Board" component={BoardScreen} options={{}} />
+      <Stack.Screen
+        name="Board"
+        component={BoardScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="PostDetail"
         component={PostDetailScreen}

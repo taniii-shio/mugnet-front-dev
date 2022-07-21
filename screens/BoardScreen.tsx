@@ -1,6 +1,7 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import Header from '../components/Header';
+import colors from '../constants/colors';
 
-import { Text, View } from 'react-native';
 import { RootTabScreenProps } from '../types';
 
 export default function BoardScreen({
@@ -8,6 +9,9 @@ export default function BoardScreen({
 }: RootTabScreenProps<'Board'>) {
   return (
     <View style={styles.container}>
+      {/* header */}
+      <Header />
+
       <Text style={styles.title}>BoardScreen</Text>
       <TouchableOpacity onPress={() => navigation.navigate('PostDetail')}>
         <Text>Click me</Text>
@@ -19,8 +23,7 @@ export default function BoardScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: colors.white,
   },
   title: {
     fontSize: 20,
