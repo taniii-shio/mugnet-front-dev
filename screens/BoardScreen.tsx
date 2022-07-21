@@ -1,15 +1,17 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Text, View } from 'react-native';
 import { RootTabScreenProps } from '../types';
 
 export default function BoardScreen({
   navigation,
-}: RootTabScreenProps<'Search'>) {
+}: RootTabScreenProps<'Board'>) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>BoardScreen</Text>
-      <View style={styles.separator} />
+      <TouchableOpacity onPress={() => navigation.navigate('PostDetail')}>
+        <Text>Click me</Text>
+      </TouchableOpacity>
     </View>
   );
 }
