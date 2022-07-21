@@ -1,16 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { Text, View } from 'react-native';
+import { RootTabScreenProps } from '../types';
 
-export default function ModalScreen() {
+export default function SearchScreen({
+  navigation,
+}: RootTabScreenProps<'Search'>) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Modal</Text>
+      <Text style={styles.title}>SearchScreen</Text>
       <View style={styles.separator} />
-
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>
   );
 }
