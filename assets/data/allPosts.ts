@@ -1,0 +1,48 @@
+const allPosts: any[] = [
+  {
+    _id: '01',
+    userId: '01',
+    categoryTag: 1,
+    title: 'おすすめのラーメン屋教えて',
+    desc: 'おすすめのラーメン屋教えて',
+    likes: ['62c6d36fc80f5383a86fb8b8'],
+    createdAt: '2022-07-16T07:18:55.035Z',
+    updatedAt: '2022-07-16T07:21:16.556Z',
+    __v: 0,
+  },
+  {
+    _id: '02',
+    userId: '02',
+    categoryTag: 1,
+    title: '人社の落単教えて',
+    desc: '人社、教養の落単教えて',
+    likes: ['62c6d36fc80f5383a86fb8b8'],
+    createdAt: '2022-07-16T07:18:55.035Z',
+    updatedAt: '2022-07-16T07:21:16.556Z',
+    __v: 0,
+  },
+  {
+    _id: '03',
+    userId: '03',
+    categoryTag: 1,
+    title: 'こないだバイドで、、',
+    desc: 'こないだバイドで',
+    likes: ['62c6d36fc80f5383a86fb8b8'],
+    createdAt: '2022-07-16T07:18:55.035Z',
+    updatedAt: '2022-07-16T07:21:16.556Z',
+    __v: 0,
+  },
+  {
+    _id: '04',
+    userId: '04',
+    categoryTag: 1,
+    title: '就活相談',
+    desc: 'みなさん夏インターンどうやって応募していますか',
+    likes: ['62c6d36fc80f5383a86fb8b8'],
+    createdAt: '2022-07-16T07:18:55.035Z',
+    updatedAt: '2022-07-16T07:21:16.556Z',
+    __v: 0,
+  },
+];
+
+export default allPosts;
