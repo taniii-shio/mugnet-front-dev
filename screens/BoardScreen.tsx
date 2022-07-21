@@ -5,7 +5,7 @@ import { RootTabScreenProps } from '../types';
 
 export default function BoardScreen({
   navigation,
-}: RootTabScreenProps<'TabOne'>) {
+}: RootTabScreenProps<'Search'>) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>BoardScreen</Text>

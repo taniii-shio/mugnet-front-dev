@@ -1,10 +1,12 @@
-import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { ColorSchemeName, Pressable } from 'react-native';
 
 import SearchStackNavigator from './SearchStackNavigator';
 import BoardStackNavigator from './BoardStackNavigator';
 import ProfileStackNavigator from './ProfileStackNavigator';
+
+import { Entypo } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { RootTabParamList, RootTabScreenProps } from '../types';
 
@@ -13,14 +15,43 @@ const Tab = createBottomTabNavigator<RootTabParamList>();
 export default function BottomTabNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Search"
       screenOptions={{
-        tabBarActiveTintColor: '#2f95dc',
+        tabBarActiveTintColor: '#000',
+        tabBarShowLabel: false,
       }}
     >
-      <Tab.Screen name="Search" component={SearchStackNavigator} />
-      <Tab.Screen name="Board" component={BoardStackNavigator} />
-      <Tab.Screen name="Profile" component={ProfileStackNavigator} />
+      <Tab.Screen
+        name="Search"
+        component={SearchStackNavigator}
+        options={({ navigation }: RootTabScreenProps<'Search'>) => ({
+          tabBarIcon: ({ color }) => (
+            <Entypo name="magnifying-glass" size={28} color={color} />
+          ),
+        })}
+      />
+      <Tab.Screen
+        name="Board"
+        component={BoardStackNavigator}
+        options={({ navigation }: RootTabScreenProps<'Board'>) => ({
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="bulletin-board"
+              size={28}
+              color={color}
+            />
+          ),
+        })}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileStackNavigator}
+        options={({ navigation }: RootTabScreenProps<'Profile'>) => ({
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="user-alt" size={24} color={color} />
+          ),
+        })}
+      />
       {/* <Tab.Screen
         name="TabOne"
         component={TabOneScreen}
@@ -54,11 +85,4 @@ export default function BottomTabNavigator() {
       /> */}
     </Tab.Navigator>
   );
-}
-
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
