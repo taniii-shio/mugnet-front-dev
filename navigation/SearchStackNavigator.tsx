@@ -8,13 +8,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function SearchStackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="SearchStack"
-        component={SearchScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
+      <Stack.Screen name="Search" component={SearchScreen} options={{}} />
     </Stack.Navigator>
   );
 }
