@@ -15,14 +15,14 @@ const Tab = createBottomTabNavigator<RootTabParamList>();
 export default function BottomTabNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Search"
+      initialRouteName="SearchStack"
       screenOptions={{
         tabBarActiveTintColor: '#000',
         tabBarShowLabel: false,
       }}
     >
       <Tab.Screen
-        name="Search"
+        name="SearchStack"
         component={SearchStackNavigator}
         options={{
           tabBarIcon: ({ color }) => (
@@ -32,7 +32,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Board"
+        name="BoardStack"
         component={BoardStackNavigator}
         options={{
           tabBarIcon: ({ color }) => (
@@ -46,7 +46,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="ProfileStack"
         component={ProfileStackNavigator}
         options={{
           tabBarIcon: ({ color }) => (

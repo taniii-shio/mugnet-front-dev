@@ -26,6 +26,9 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
+  SearchStack: undefined;
+  BoardStack: undefined;
+  ProfileStack: undefined;
   Search: undefined;
   Board: undefined;
   Profile: undefined;
