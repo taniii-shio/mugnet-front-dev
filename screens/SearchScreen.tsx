@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   TextInput,
+  Dimensions,
 } from 'react-native';
 import Header from '../components/Header';
 
@@ -15,6 +16,8 @@ import colors from '../constants/colors';
 import { RootTabScreenProps } from '../types';
 import { Entypo } from '@expo/vector-icons';
 
+const DeviceWidth = Dimensions.get('window').width;
+
 export default function SearchScreen({
   navigation,
 }: RootTabScreenProps<'Search'>) {
@@ -23,11 +26,28 @@ export default function SearchScreen({
       <TouchableOpacity>
         <ImageBackground
           source={item.profilePicture}
-          style={styles.recommendUserItem}
+          style={[
+            styles.recommendUserItem,
+            { marginLeft: item._id === '01' ? 16 : 0 },
+          ]}
           imageStyle={styles.recommendUserItemImage}
         />
-        <Text style={styles.recommendUserName}>{item.name}</Text>
-        <Text style={styles.recommendUserDesc}>{item.desc}</Text>
+        <Text
+          style={[
+            styles.recommendUserName,
+            { marginLeft: item._id === '01' ? 24 : 8 },
+          ]}
+        >
+          {item.name}
+        </Text>
+        <Text
+          style={[
+            styles.recommendUserDesc,
+            { marginLeft: item._id === '01' ? 24 : 8 },
+          ]}
+        >
+          {item.desc}
+        </Text>
       </TouchableOpacity>
     );
   };
@@ -52,8 +72,17 @@ export default function SearchScreen({
 
       {/* search */}
       <View style={styles.searchWrapper}>
-        <Entypo name="magnifying-glass" size={28} color={colors.black} />
-        <TextInput />
+        <Entypo
+          name="magnifying-glass"
+          size={24}
+          color={colors.gray500}
+          style={styles.searchIcon}
+        />
+        <TextInput
+          style={styles.input}
+          multiline={false}
+          placeholder={'ユーザーIDから友達を検索'}
+        />
       </View>
     </View>
   );
@@ -65,20 +94,61 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   // recommend
-  recommendWrapper: {},
-  recommendTitle: {
-    fontFamily: 'inter_bold',
+  recommendWrapper: {
+    // marginHorizontal: 16,
   },
-  recommendUsersWrapper: {},
+  recommendTitle: {
+    fontFamily: 'inter_semibold',
+    fontSize: 22,
+    color: colors.gray800,
+    marginHorizontal: 16,
+  },
+  recommendUsersWrapper: {
+    height: 520,
+    marginTop: 24,
+  },
   recommendUserItem: {
-    width: 300,
+    width: 320,
     height: 400,
+    marginRight: 16,
   },
   recommendUserItemImage: {
     borderRadius: 8,
   },
-  recommendUserName: {},
-  recommendUserDesc: {},
+  recommendUserName: {
+    fontFamily: 'inter_semibold',
+    fontSize: 24,
+    color: colors.gray800,
+    maxWidth: 269,
+    marginVertical: 16,
+  },
+  recommendUserDesc: {
+    fontFamily: 'inter_semibold',
+    fontSize: 16,
+    color: colors.gray500,
+    maxWidth: 269,
+    maxHeight: 48,
+    marginBottom: 16,
+  },
   // search
-  searchWrapper: {},
+  searchWrapper: {
+    backgroundColor: colors.gray100,
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: DeviceWidth - 32,
+    height: 48,
+    borderRadius: 16,
+    position: 'absolute',
+    bottom: 16,
+    marginHorizontal: 16,
+  },
+  searchIcon: {
+    marginLeft: 16,
+  },
+  input: {
+    fontFamily: 'inter_regular',
+    fontSize: 18,
+    color: colors.gray500,
+    marginLeft: 8,
+  },
 });
