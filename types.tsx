@@ -15,6 +15,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   // SearchStack
   Search: undefined;
+  RecommendUserDetial: undefined;
   // BoardStack
   Board: undefined;
   PostDetail: undefined;
@@ -26,12 +27,13 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
-  SearchStack: undefined;
+  SearchStack: {
+    profilePicture: any;
+    name: string;
+    desc: string;
+  };
   BoardStack: undefined;
   ProfileStack: undefined;
-  Search: undefined;
-  Board: undefined;
-  Profile: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =

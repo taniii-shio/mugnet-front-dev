@@ -20,22 +20,24 @@ const DeviceWidth = Dimensions.get('window').width;
 
 export default function SearchScreen({
   navigation,
-}: RootTabScreenProps<'Search'>) {
-  const renderRecommendUserItem = ({ item }: any) => {
+}: RootTabScreenProps<'SearchStack'>) {
+  const renderRecommendUserItem = ({ item, index }: any) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('RecommendUserDetial', item)}
+      >
         <ImageBackground
           source={item.profilePicture}
           style={[
             styles.recommendUserItem,
-            { marginLeft: item._id === '01' ? 16 : 0 },
+            { marginLeft: index === 0 ? 16 : 0 },
           ]}
           imageStyle={styles.recommendUserItemImage}
         />
         <Text
           style={[
             styles.recommendUserName,
-            { marginLeft: item._id === '01' ? 24 : 8 },
+            { marginLeft: index === 0 ? 24 : 8 },
           ]}
         >
           {item.name}
@@ -43,7 +45,7 @@ export default function SearchScreen({
         <Text
           style={[
             styles.recommendUserDesc,
-            { marginLeft: item._id === '01' ? 24 : 8 },
+            { marginLeft: index === 0 ? 24 : 8 },
           ]}
         >
           {item.desc}
