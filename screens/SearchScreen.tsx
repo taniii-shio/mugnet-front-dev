@@ -3,8 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  TouchableOpacity,
-  ImageBackground,
   TextInput,
   Dimensions,
 } from 'react-native';
@@ -15,56 +13,31 @@ import colors from '../constants/colors';
 
 import { RootTabScreenProps } from '../types';
 import { Entypo } from '@expo/vector-icons';
+import RecommendUserItem from '../components/RecommendUserItem';
 
 const DeviceWidth = Dimensions.get('window').width;
 
 export default function SearchScreen({
   navigation,
 }: RootTabScreenProps<'SearchStack'>) {
-  const renderRecommendUserItem = ({ item, index }: any) => {
-    return (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('RecommendUserDetial', item)}
-      >
-        <ImageBackground
-          source={item.profilePicture}
-          style={[
-            styles.recommendUserItem,
-            { marginLeft: index === 0 ? 16 : 0 },
-          ]}
-          imageStyle={styles.recommendUserItemImage}
-        />
-        <Text
-          style={[
-            styles.recommendUserName,
-            { marginLeft: index === 0 ? 24 : 8 },
-          ]}
-        >
-          {item.name}
-        </Text>
-        <Text
-          style={[
-            styles.recommendUserDesc,
-            { marginLeft: index === 0 ? 24 : 8 },
-          ]}
-        >
-          {item.desc}
-        </Text>
-      </TouchableOpacity>
-    );
-  };
   return (
     <View style={styles.container}>
       {/* header */}
       <Header />
 
       {/* recommend */}
-      <View style={styles.recommendWrapper}>
+      <View>
         <Text style={styles.recommendTitle}>おすすめの友達</Text>
         <View style={styles.recommendUsersWrapper}>
           <FlatList
             data={recommendUsers}
-            renderItem={renderRecommendUserItem}
+            renderItem={({ item, index }) => (
+              <RecommendUserItem
+                item={item}
+                index={index}
+                navigation={navigation}
+              />
+            )}
             keyExtractor={(item) => item._id}
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -96,9 +69,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   // recommend
-  recommendWrapper: {
-    // marginHorizontal: 16,
-  },
   recommendTitle: {
     fontFamily: 'inter_semibold',
     fontSize: 22,
@@ -108,29 +78,6 @@ const styles = StyleSheet.create({
   recommendUsersWrapper: {
     height: 520,
     marginTop: 24,
-  },
-  recommendUserItem: {
-    width: 320,
-    height: 400,
-    marginRight: 16,
-  },
-  recommendUserItemImage: {
-    borderRadius: 8,
-  },
-  recommendUserName: {
-    fontFamily: 'inter_semibold',
-    fontSize: 24,
-    color: colors.gray800,
-    maxWidth: 269,
-    marginVertical: 16,
-  },
-  recommendUserDesc: {
-    fontFamily: 'inter_semibold',
-    fontSize: 16,
-    color: colors.gray500,
-    maxWidth: 269,
-    maxHeight: 48,
-    marginBottom: 16,
   },
   // search
   searchWrapper: {
