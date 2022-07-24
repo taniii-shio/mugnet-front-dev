@@ -1,10 +1,13 @@
+import React from 'react';
 import {
   StyleSheet,
   View,
   Text,
-  FlatList,
   TextInput,
   Dimensions,
+  Animated,
+  TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import Header from '../components/Header';
 
@@ -13,13 +16,60 @@ import colors from '../constants/colors';
 
 import { RootTabScreenProps } from '../types';
 import { Entypo } from '@expo/vector-icons';
-import RecommendUserItem from '../components/RecommendUserItem';
 
 const DeviceWidth = Dimensions.get('window').width;
+const cardWidth = DeviceWidth * 0.820512820512821;
 
 export default function SearchScreen({
   navigation,
 }: RootTabScreenProps<'SearchStack'>) {
+  const scrollX = React.useRef(new Animated.Value(0)).current;
+
+  const renderRecommendUserItem = ({ item, index }: any) => {
+    const inputRange = [
+      (index - 1) * cardWidth,
+      index * cardWidth,
+      (index + 1) * cardWidth,
+    ];
+    const scale = scrollX.interpolate({
+      inputRange,
+      outputRange: [0.9, 1, 0.9],
+    });
+
+    return (
+      <Animated.View style={{ transform: [{ scale }] }}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('RecommendUserDetial', item)}
+        >
+          <ImageBackground
+            source={item.profilePicture}
+            style={[
+              styles.recommendUserItem,
+              { marginLeft: index === 0 ? 16 : 0 },
+            ]}
+            imageStyle={styles.recommendUserItemImage}
+          />
+          <Text
+            style={[
+              styles.recommendUserName,
+              { marginLeft: index === 0 ? 24 : 8 },
+            ]}
+          >
+            {item.name}
+          </Text>
+          <Text
+            style={[
+              styles.recommendUserDesc,
+              { marginLeft: index === 0 ? 24 : 8 },
+            ]}
+          >
+            {item.desc}
+          </Text>
+        </TouchableOpacity>
+      </Animated.View>
+    );
+  };
+
   return (
     <View style={styles.container}>
       {/* header */}
@@ -29,18 +79,21 @@ export default function SearchScreen({
       <View>
         <Text style={styles.recommendTitle}>おすすめの友達</Text>
         <View style={styles.recommendUsersWrapper}>
-          <FlatList
-            data={recommendUsers}
-            renderItem={({ item, index }) => (
-              <RecommendUserItem
-                item={item}
-                index={index}
-                navigation={navigation}
-              />
+          <Animated.FlatList
+            onScroll={Animated.event(
+              [
+                {
+                  nativeEvent: { contentOffset: { x: scrollX } },
+                },
+              ],
+              { useNativeDriver: true },
             )}
+            data={recommendUsers}
+            renderItem={renderRecommendUserItem}
             keyExtractor={(item) => item._id}
-            horizontal
+            horizontal={true}
             showsHorizontalScrollIndicator={false}
+            // snapToInterval={cardWidth}
           />
         </View>
       </View>
@@ -76,8 +129,32 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   recommendUsersWrapper: {
+    width: DeviceWidth,
     height: 520,
     marginTop: 24,
+  },
+  recommendUserItem: {
+    width: cardWidth,
+    height: 400,
+    marginRight: 8,
+  },
+  recommendUserItemImage: {
+    borderRadius: 8,
+  },
+  recommendUserName: {
+    fontFamily: 'inter_semibold',
+    fontSize: 24,
+    color: colors.gray800,
+    maxWidth: 269,
+    marginVertical: 16,
+  },
+  recommendUserDesc: {
+    fontFamily: 'inter_semibold',
+    fontSize: 16,
+    color: colors.gray500,
+    maxWidth: 269,
+    maxHeight: 48,
+    marginBottom: 16,
   },
   // search
   searchWrapper: {
