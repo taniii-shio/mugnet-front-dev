@@ -6,7 +6,7 @@ import { RootTabScreenProps } from '../types';
 
 export default function ProfileScreen({
   navigation,
-}: RootTabScreenProps<'Profile'>) {
+}: RootTabScreenProps<'ProfileStack'>) {
   return (
     <View style={styles.container}>
       {/* header */}

@@ -6,7 +6,7 @@ import { RootTabScreenProps } from '../types';
 
 export default function BoardScreen({
   navigation,
-}: RootTabScreenProps<'Board'>) {
+}: RootTabScreenProps<'BoardStack'>) {
   return (
     <View style={styles.container}>
       {/* header */}

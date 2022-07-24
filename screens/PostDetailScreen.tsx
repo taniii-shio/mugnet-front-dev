@@ -1,11 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { Text, View } from 'react-native';
 import { RootTabScreenProps } from '../types';
 
 export default function PostDetailScreen({
   navigation,
-}: RootTabScreenProps<'Board'>) {
+}: RootTabScreenProps<'BoardStack'>) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>PostDetailScreen</Text>
