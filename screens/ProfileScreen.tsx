@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Header from '../components/Header';
-import colors from '../constants/colors';
+import colors from '../assets/colors/colors';
 
 import { RootTabScreenProps } from '../types';
 

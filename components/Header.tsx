@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 
-import colors from '../constants/colors';
+import colors from '../assets/colors/colors';
 
 export default function Header() {
   return (
