@@ -13,8 +13,8 @@ import { Entypo } from '@expo/vector-icons';
 import axios from 'axios';
 
 import Header from '../components/Header';
-// import recommendUsers from '../assets/data/recommendUsers';
-import colors from '../constants/colors';
+import recommendUsers from '../assets/data/recommendUsers';
+import colors from '../assets/colors/colors';
 import { RootTabScreenProps } from '../types';
 
 const DeviceWidth = Dimensions.get('window').width;
@@ -23,19 +23,19 @@ const cardWidth = DeviceWidth * 0.820512820512821;
 export default function SearchScreen({
   navigation,
 }: RootTabScreenProps<'SearchStack'>) {
-  const [recommendUsers, setRecommendUsers] = useState([]);
-  useEffect(() => {
-    const fetchRecommendUser = async () => {
-      const response = await axios.get(
-        'http://localhost:8000/api/users/recommend/all',
-      );
-      console.log(response.data);
-      setRecommendUsers(response.data);
-    };
-    fetchRecommendUser();
-  }, []);
+  // const [recommendUsers, setRecommendUsers] = useState([]);
+  // useEffect(() => {
+  //   const fetchRecommendUser = async () => {
+  //     const response = await axios.get(
+  //       'http://localhost:8000/api/users/recommend/all',
+  //     );
+  //     console.log(response.data);
+  //     setRecommendUsers(response.data);
+  //   };
+  //   fetchRecommendUser();
+  // }, []);
 
-  // console.log(recommendUsers);
+  console.log(recommendUsers);
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const renderRecommendUserItem = ({ item, index }: any) => {
