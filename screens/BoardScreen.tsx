@@ -1,18 +1,40 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import Header from '../components/Header';
-import colors from '../assets/colors/colors';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
 
+import Header from '../components/Header';
+import allPosts from '../assets/data/allPosts';
+import colors from '../assets/colors/colors';
 import { RootTabScreenProps } from '../types';
 
 export default function BoardScreen({
   navigation,
 }: RootTabScreenProps<'BoardStack'>) {
+  const renderPostItem = ({ item, index }: any) => {
+    return (
+      <View>
+        <TouchableOpacity></TouchableOpacity>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
       {/* header */}
       <Header />
 
-      <Text style={styles.title}>BoardScreen</Text>
+      <Text style={styles.title}>掲示板</Text>
+      <FlatList
+        data={allPosts}
+        renderItem={renderPostItem}
+        keyExtractor={(item: any) => item._id}
+        showsVerticalScrollIndicator={false}
+      ></FlatList>
+
       <TouchableOpacity onPress={() => navigation.navigate('PostDetail')}>
         <Text>Click me</Text>
       </TouchableOpacity>
@@ -28,10 +50,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 });
