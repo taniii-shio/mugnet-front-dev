@@ -34,6 +34,7 @@ export type RootTabParamList = {
   };
   BoardStack: undefined;
   ProfileStack: undefined;
+  AuthStack: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
